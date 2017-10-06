@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard">
+    <nav-bar></nav-bar>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -23,9 +24,11 @@
 
 <script>
 import firebase from 'firebase'
+import NavBar from '@/components/private/NavBar'
 
 export default {
   name: 'dashboard',
+  components: {NavBar},
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
