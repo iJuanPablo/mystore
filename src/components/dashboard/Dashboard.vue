@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="dashboard">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -17,7 +17,7 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
-    <button @click="logout">logout</button>
+    <el-button @click="logout">logout</el-button>
   </div>
 </template>
 
@@ -25,7 +25,7 @@
 import firebase from 'firebase'
 
 export default {
-  name: 'hello',
+  name: 'dashboard',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -34,7 +34,7 @@ export default {
   methods: {
     logout: function () {
       firebase.auth().signOut().then(() => {
-        this.$router.replace('login')
+        this.$router.replace('home')
       })
     }
   }

@@ -3,9 +3,23 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+
 import firebase from 'firebase'
 
+import VueI18n from 'vue-i18n'
+import ElementUI from 'element-ui'
+
+import 'element-ui/lib/theme-default/index.css'
+
 Vue.config.productionTip = false
+
+Vue.use(VueI18n)
+Vue.use(ElementUI)
+
+Vue.config.lang = 'en'
+
+// import enLocale from 'element-ui/lib/locale/lang/en'
+// Vue.locale('en', enLocale)
 
 // Initialize Firebase
 let app
