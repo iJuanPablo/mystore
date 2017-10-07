@@ -4,7 +4,9 @@ import Router from 'vue-router'
 import Home from '@/components/public/Home'
 import Features from '@/components/public/Features'
 import Pricing from '@/components/public/Pricing'
+
 import Auth from '@/components/authentication/Auth'
+import Settings from '@/components/authentication/Settings'
 
 import Dashboard from '@/components/dashboard/Dashboard'
 import Stores from '@/components/stores/Stores'
@@ -43,6 +45,14 @@ let router = new Router({
       path: '/auth',
       name: 'Auth',
       component: Auth
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: Settings,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/dashboard',

@@ -19,12 +19,11 @@
       <el-col :span="4">
         
         <el-menu :default-active="activeIndex2" class="el-menu-demo" 
-        mode="horizontal">
-          <el-submenu index="2">
-            <template slot="title">User</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item @click="logOut" index="2-3">Logout</el-menu-item>
+        mode="horizontal" @select="handleSelect">
+          <el-submenu index="dropdown">
+            <template slot="title">{{ userName }}</template>
+            <el-menu-item index="settings">Settings</el-menu-item>
+            <el-menu-item @click="logOut" index="0">Logout</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-col>
@@ -41,6 +40,13 @@ export default {
     return {
       activeIndex: '1',
       activeIndex2: '1'
+    }
+  },
+  computed: {
+    userName: function () {
+      let displayName = firebase.auth().currentUser.displayName
+      if (displayName) return displayName
+      else return firebase.auth().currentUser.email
     }
   },
   methods: {
