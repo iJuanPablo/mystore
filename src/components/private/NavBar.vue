@@ -17,9 +17,15 @@
         </el-menu>
       </el-col>
       <el-col :span="4">
+        
         <el-menu :default-active="activeIndex2" class="el-menu-demo" 
-        mode="horizontal" @select="handleSelect">
-          <el-menu-item index="auth">User</el-menu-item>
+        mode="horizontal">
+          <el-submenu index="2">
+            <template slot="title">User</template>
+            <el-menu-item index="2-1">item one</el-menu-item>
+            <el-menu-item index="2-2">item two</el-menu-item>
+            <el-menu-item @click="logOut" index="2-3">Logout</el-menu-item>
+          </el-submenu>
         </el-menu>
       </el-col>
     </el-row>    
@@ -27,6 +33,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 
 export default {
   name: 'navBar',
@@ -39,6 +46,11 @@ export default {
   methods: {
     handleSelect: function (key, keyPath) {
       this.$router.replace(key)
+    },
+    logOut: function () {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('home')
+      })
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="features">
     <nav-bar></nav-bar>
     <img src="/static/iconoTienda.png">
-    <h3>Features</h3>
+    <h1>Features</h1>
   </div>
 </template>
 

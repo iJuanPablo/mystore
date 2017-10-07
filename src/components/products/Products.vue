@@ -1,7 +1,7 @@
 <template>
-  <div class="dashboard">
+  <div class="products">
     <nav-bar></nav-bar>
-    <h1>Dashboard</h1>
+    <h1>Products</h1>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 import NavBar from '@/components/private/NavBar'
 
 export default {
-  name: 'dashboard',
+  name: 'products',
   components: {NavBar}
 }
 </script>

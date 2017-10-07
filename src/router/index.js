@@ -7,6 +7,9 @@ import Pricing from '@/components/public/Pricing'
 import Auth from '@/components/authentication/Auth'
 
 import Dashboard from '@/components/dashboard/Dashboard'
+import Stores from '@/components/stores/Stores'
+import Products from '@/components/products/Products'
+
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -45,6 +48,22 @@ let router = new Router({
       path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/stores',
+      name: 'Stores',
+      component: Stores,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/products',
+      name: 'Products',
+      component: Products,
       meta: {
         requiresAuth: true
       }

@@ -8,14 +8,14 @@
         <img src="/static/iconoTienda.png">
       </el-col>
       <el-col :span="14">
-        <h3>Sign In</h3>
+        <h2>Sign In</h2>
         <el-input type="text" v-model="email" placeholder="Email" class="input"></el-input>
         <el-input type="password" v-model="password" placeholder="Password" class="input"></el-input>
         <el-button @click="signIn" type="success">Log In</el-button>
 
         <hr></hr>
 
-        <h3>Sign Up</h3>
+        <h2>Sign Up</h2>
         <el-input type="text" v-model="emailNW" placeholder="Email" class="input"></el-input>
         <el-input type="password" v-model="passwordNW" placeholder="Password" class="input"></el-input>
         <el-button @click="signUp" type="info">Register</el-button>
@@ -80,6 +80,9 @@ hr {
     padding: 0;
 }
 
+h2 {
+  text-align: center;
+}
 .input {
   width: 180px;
 
