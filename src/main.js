@@ -7,6 +7,8 @@ import router from './router'
 import firebase from 'firebase'
 
 import Vuex from 'vuex'
+import store from './store'
+
 import VueI18n from 'vue-i18n'
 import ElementUI from 'element-ui'
 
@@ -14,7 +16,6 @@ import 'element-ui/lib/theme-default/index.css'
 
 Vue.config.productionTip = false
 
-Vue.use(Vuex)
 Vue.use(VueI18n)
 Vue.use(ElementUI)
 
@@ -41,6 +42,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     app = new Vue({
       el: '#app',
       router,
+      store,
       template: '<App/>',
       components: { App }
     })
