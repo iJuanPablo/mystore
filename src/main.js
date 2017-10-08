@@ -13,6 +13,10 @@ import ElementUI from 'element-ui'
 
 import 'element-ui/lib/theme-default/index.css'
 
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify)
+
 Vue.config.productionTip = false
 
 Vue.use(VueI18n)
