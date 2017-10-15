@@ -1,93 +1,74 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/components/public/Home'
-import Features from '@/components/public/Features'
-import Pricing from '@/components/public/Pricing'
+import AuthGuard from './auth-guard'
 
-import Auth from '@/components/authentication/Auth'
-import Settings from '@/components/authentication/Settings'
-
-import Dashboard from '@/components/dashboard/Dashboard'
-import Stores from '@/components/stores/Stores'
-import Products from '@/components/products/Products'
-
-import firebase from 'firebase'
+import Home from '@/components/Home'
+import Stores from '@/components/Store/Stores'
+import CreateStore from '@/components/Store/CreateStore'
+import Store from '@/components/Store/Store'
+import Products from '@/components/Product/Products'
+import CreateProduct from '@/components/Product/CreateProduct'
+import Profile from '@/components/User/Profile'
+import Signin from '@/components/User/Signin'
+import Signup from '@/components/User/Signup'
 
 Vue.use(Router)
 
-let router = new Router({
+export default new Router({
   routes: [
     {
-      path: '*',
-      redirect: '/home'
-    },
-    {
       path: '/',
-      redirect: '/home'
-    },
-    {
-      path: '/home',
       name: 'Home',
       component: Home
     },
     {
-      path: '/features',
-      name: 'Features',
-      component: Features
+      path: '/signin',
+      name: 'Signin',
+      component: Signin
     },
     {
-      path: '/pricing',
-      name: 'Pricing',
-      component: Pricing
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
     },
     {
-      path: '/auth',
-      name: 'Auth',
-      component: Auth
-    },
-    {
-      path: '/settings',
-      name: 'Settings',
-      component: Settings,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard,
-      meta: {
-        requiresAuth: true
-      }
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
+      beforeEnter: AuthGuard
     },
     {
       path: '/stores',
       name: 'Stores',
       component: Stores,
-      meta: {
-        requiresAuth: true
-      }
+      beforeEnter: AuthGuard
+    },
+    {
+      path: '/store/new',
+      name: 'CreateStore',
+      component: CreateStore,
+      beforeEnter: AuthGuard
+    },
+    {
+      path: '/store/:id',
+      name: 'Store',
+      component: Store,
+      beforeEnter: AuthGuard,
+      props: true
     },
     {
       path: '/products',
       name: 'Products',
       component: Products,
-      meta: {
-        requiresAuth: true
-      }
+      beforeEnter: AuthGuard
+    },
+    {
+      path: '/product/new',
+      name: 'CreateProduct',
+      component: CreateProduct,
+      beforeEnter: AuthGuard
     }
-  ]
+  ],
+  mode: 'history'
 })
-
-router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-
-  if (requiresAuth && !currentUser) next('auth')
-  else if (!requiresAuth && currentUser) next('dashboard')
-  else next()
-})
-
-export default router
