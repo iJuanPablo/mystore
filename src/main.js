@@ -5,6 +5,7 @@ import router from './router'
 
 import { store } from './store'
 import * as firebase from 'firebase'
+import * as firebaseConfig from './utils/firebaseConfig'
 
 import AlertCmp from './components/Shared/Alert.vue'
 import EditStoreDetailsDialog from './components/Store/Edit/EditStoreDetailsDialog'
@@ -22,13 +23,14 @@ new Vue({
   store,
   render: h => h(App),
   created () {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyCa-ZMY2LI3bTM3KQrklZPkdaNkPy8WT9M',
-      authDomain: 'mystore-20d4b.firebaseapp.com',
-      databaseURL: 'https://mystore-20d4b.firebaseio.com',
-      projectId: 'mystore-20d4b',
-      storageBucket: 'gs://mystore-20d4b.appspot.com'
-    })
+    var url = document.URL.split('/')[2]
+    if (url.indexOf('dev') !== -1 || url.indexOf('localhost') !== -1) {
+      firebase.initializeApp(firebaseConfig.configDev)
+    } else if (url.indexOf('staging') !== -1) {
+      firebase.initializeApp(firebaseConfig.configStaging)
+    } else {
+      firebase.initializeApp(firebaseConfig.configProd)
+    }
     firebase.auth().onAuthStateChanged(
       (user) => {
         if (user) {
