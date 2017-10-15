@@ -4,14 +4,19 @@ import Router from 'vue-router'
 import AuthGuard from './auth-guard'
 
 import Home from '@/components/Home'
+
+import Signin from '@/components/User/Signin'
+import Signup from '@/components/User/Signup'
+import Profile from '@/components/User/Profile'
+
+import Dashboard from '@/components/Dashboard/Dashboard'
+
 import Stores from '@/components/Store/Stores'
 import CreateStore from '@/components/Store/CreateStore'
 import Store from '@/components/Store/Store'
+
 import Products from '@/components/Product/Products'
 import CreateProduct from '@/components/Product/CreateProduct'
-import Profile from '@/components/User/Profile'
-import Signin from '@/components/User/Signin'
-import Signup from '@/components/User/Signup'
 
 Vue.use(Router)
 
@@ -36,6 +41,12 @@ export default new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile,
+      beforeEnter: AuthGuard
+    },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
       beforeEnter: AuthGuard
     },
     {

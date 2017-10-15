@@ -2,17 +2,18 @@
 export default {
   state: {
     loading: false,
-    error: null
+    errorAlert: null
   },
   mutations: {
     setLoading (state, payload) {
       state.loading = payload
     },
     setError (state, payload) {
-      state.error = payload
+      state.errorAlert = payload
+      console.log(state.errorAlert)
     },
     clearError (state) {
-      state.error = null
+      state.errorAlert = null
     }
   },
   actions: {
@@ -21,11 +22,11 @@ export default {
     }
   },
   getters: {
-    loading (state) {
+    loadingState (state) {
       return state.loading
     },
-    error (state) {
-      return state.error
+    errorAlert (state) {
+      return state.errorAlert
     }
   }
 }

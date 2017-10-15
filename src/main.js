@@ -4,6 +4,8 @@ import App from './App'
 import router from './router'
 
 import { store } from './store'
+import { mapGetters } from 'vuex'
+
 import * as firebase from 'firebase'
 import * as firebaseConfig from './utils/firebaseConfig'
 
@@ -12,6 +14,14 @@ import EditStoreDetailsDialog from './components/Store/Edit/EditStoreDetailsDial
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
+
+store.allGetters = Reflect.ownKeys(store.getters)
+
+Vue.mixin({
+  computed: {
+    ...mapGetters(store.allGetters)
+  }
+})
 
 Vue.component('app-alert', AlertCmp)
 Vue.component('app-edit-store-details-dialog', EditStoreDetailsDialog)
@@ -38,6 +48,5 @@ new Vue({
         }
       }
     )
-    this.$store.dispatch('loadStores')
   }
 })

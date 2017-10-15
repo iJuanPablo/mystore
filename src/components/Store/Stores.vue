@@ -32,13 +32,3 @@
     </v-layout>
   </v-container>
 </template>
-
-<script>
-export default {
-  computed: {
-    stores () {
-      return this.$store.getters.stores
-    }
-  }
-}
-</script>

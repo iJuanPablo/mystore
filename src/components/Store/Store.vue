@@ -32,16 +32,13 @@ export default {
   props: ['id'],
   computed: {
     store () {
-      return this.$store.getters.store(this.id)
-    },
-    userIsAuthenticated () {
-      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+      return this.storeById(this.id)
     },
     userIsCreator () {
       if (!this.userIsAuthenticated) {
         return false
       }
-      return this.$store.getters.user.id === this.store.creatorId
+      return this.user.id === this.store.creatorId
     }
   }
 }

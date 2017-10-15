@@ -56,7 +56,7 @@ for code references https://github.com/academind/yt-devmeetup-vue-firebase
 ## TODO
 * CD & CI, Codeship? travis is expensive
 * Structure and code clean up
-* Finish up Stores
+* Finish up Stores - Quien puede verla (Fuera del Creador)
   * Nomre, Description, Imagen, Currency, tipo Impuesto
 * Assign users to stores 
 * F: Different permission leves for users in stores
@@ -86,3 +86,6 @@ for code references https://github.com/academind/yt-devmeetup-vue-firebase
   * Idioma
 * Testing!
 
+## TODO Future
+* Logout console error.
+* Confirm password error clearing issue.

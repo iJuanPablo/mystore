@@ -23,8 +23,11 @@
       <v-toolbar-side-icon 
         @click.stop="sideNav = !sideNav"
         class="hidden-sm-and-up"></v-toolbar-side-icon>
-      <v-toolbar-title>
+      <v-toolbar-title v-if="!userIsAuthenticated">
         <router-link to="/" tag="span" style="cursor: pointer">mystore</router-link>
+      </v-toolbar-title>
+      <v-toolbar-title v-if="userIsAuthenticated">
+        <router-link to="/Dashboard" tag="span" style="cursor: pointer">mystore</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
@@ -42,7 +45,7 @@
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
-
+    <app-alert v-if="errorAlert" @dismissed="onDismissed" :text="errorAlert.message"></app-alert>
     <main>
       <router-view></router-view>
     </main>
@@ -70,14 +73,25 @@
           ]
         }
         return menuItems
-      },
-      userIsAuthenticated () {
-        return this.$store.getters.user !== null && this.$store.getters.user !== undefined
       }
     },
     methods: {
       onLogout () {
         this.$store.dispatch('logout')
+      },
+      onDismissed () {
+        this.$store.dispatch('clearError')
+      }
+    },
+    watch: {
+      user (value) {
+        if (value !== null && value !== undefined) {
+          this.$router.push('/dashboard')
+          this.$store.dispatch('loadStores')
+        } else {
+          this.$router.push('/')
+          this.$store.dispatch('clearUserData')
+        }
       }
     }
   }
