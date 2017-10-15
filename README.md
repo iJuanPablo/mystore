@@ -27,7 +27,7 @@ npm run e2e
 npm test
 ```
 
-##Deploy to firebase
+## Deploy to firebase
 
 Remember first to build the project. Once built you can deploy.
 Current environments: dev, test, prod
@@ -48,41 +48,41 @@ $ firebase deploy -P staging # deploy to staging alias
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
-##Notes
+## Notes
 for images? http://cthedot.de/icongen/
 
 for code references https://github.com/academind/yt-devmeetup-vue-firebase
 
-##TODO
+## TODO
 * CD & CI, Codeship? travis is expensive
 * Structure and code clean up
 * Finish up Stores
-** Nomre, Description, Imagen, Currency, tipo Impuesto
+  * Nomre, Description, Imagen, Currency, tipo Impuesto
 * Assign users to stores 
 * F: Different permission leves for users in stores
 * Products: Default to creation store, but can be shared
-** Nombre, Imagen, Descripción, Categoria, Variaciones, Inventario
+  * Nombre, Imagen, Descripción, Categoria, Variaciones, Inventario
 * F: Share products to a diff store
 * Prices: Costo, Min, Destribuidor, Detalle
-** Todo sin Iva
+  * Todo sin Iva
 * Vendedores
-** Nombre, Descripción, Comisión
+  * Nombre, Descripción, Comisión
 * Clientes
-** Nombre, Info contacto, Dirección
-** A quien pertenece
+  * Nombre, Info contacto, Dirección
+  * A quien pertenece
 * Ventas
-** Medio de Pago
-** Calculo de Ultilidad, Comisión
-** Transporte, Costo, etc
+  * Medio de Pago
+  * Calculo de Ultilidad, Comisión
+  * Transporte, Costo, etc
 * Profile
-** Nombre, correo, datos, etc
-** Roles
+  * Nombre, correo, datos, etc
+  * Roles
 * Database
-** Seguridad y Rules
+  * Seguridad y Rules
 * Function
-** Integridad
+  * Integridad
 * Internacionalizacion
-** Currency
-** Idioma
-
+  * Currency
+  * Idioma
+* Testing!
 
