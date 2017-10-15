@@ -2,20 +2,7 @@ import * as firebase from 'firebase'
 
 export default {
   state: {
-    stores: [
-      {
-        imageUrl: 'http://99only.t324.com/wp-content/uploads/2014/05/store-807x615.jpg',
-        id: 'idStore1',
-        title: 'Store 1',
-        description: 'Description store 1'
-      },
-      {
-        imageUrl: 'http://www.placesnearmenow.com/wp-content/uploads/2017/02/dollar-stores-near-me-591x400.jpg',
-        id: 'idStore2',
-        title: 'Store 2',
-        description: 'Description store 2'
-      }
-    ]
+    stores: []
   },
   mutations: {
     setStores (state, payload) {

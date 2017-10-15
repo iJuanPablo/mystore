@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "prod": "mystore-prod",
+    "dev": "mystore-dev"
+  }
+}
