@@ -1,6 +1,6 @@
 # mystore
 
-> A place were you can manage your store
+> A place were you can manage your stores.
 
 ## Build Setup
 
@@ -28,7 +28,3 @@ npm test
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-## Notes
-
-Initialization using this [tutorial] (https://medium.com/@anas.mammeri/vue-2-firebase-how-to-build-a-vue-app-with-firebase-authentication-system-in-15-minutes-fdce6f289c3c).
