@@ -48,12 +48,13 @@ export default {
         )
         .catch(
           (error) => {
-            console.log(error)
+            commit('setError', error)
             commit('setLoading', false)
           }
         )
     },
     createStore ({commit, getters}, payload) {
+      commit('setLoading', true)
       const store = {
         title: payload.title,
         description: payload.description,
@@ -85,6 +86,7 @@ export default {
         )
         .then(
           () => {
+            commit('setLoading', false)
             commit('createStore', {
               ...store,
               imageUrl: imageUrl,
@@ -94,7 +96,8 @@ export default {
         )
         .catch(
           error => {
-            console.log(error)
+            commit('setLoading', false)
+            commit('setError', error)
           }
         )
     },
@@ -116,8 +119,8 @@ export default {
         )
         .catch(
           error => {
-            console.log(error)
             commit('setLoading', false)
+            commit('setError', error)
           }
         )
     }
@@ -128,7 +131,7 @@ export default {
         return storeA.id > storeB.id
       })
     },
-    store (state) {
+    storeById (state) {
       return (storeId) => {
         return state.stores.find((store) => {
           return store.id === storeId

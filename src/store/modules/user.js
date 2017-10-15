@@ -30,7 +30,6 @@ export default {
           error => {
             commit('setLoading', false)
             commit('setError', error)
-            console.log(error)
           }
         )
     },
@@ -85,18 +84,24 @@ export default {
         .catch(
           error => {
             commit('setLoading', false)
-            console.log(error)
+            commit('setError', error)
           }
         )
     },
     logout ({commit}) {
-      firebase.auth().logout
+      firebase.auth().signOut()
       commit('setUser', null)
+    },
+    clearUserData ({commit}) {
+      commit('setStores', null)
     }
   },
   getters: {
     user (state) {
       return state.user
+    },
+    userIsAuthenticated (state) {
+      return state.user !== null && state.user !== undefined
     }
   }
 }

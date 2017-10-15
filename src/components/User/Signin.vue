@@ -1,10 +1,5 @@
 <template>
   <v-container>
-    <v-layout row v-if="error">
-      <v-flex xs12 sm6 offset-sm3>
-        <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
-      </v-flex>
-    </v-layout>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <v-card-text>
@@ -34,7 +29,7 @@
               </v-layout>
               <v-layout row>
                 <v-flex xs12>
-                  <v-btn type="submit" :disabled="loading" :loading="loading">
+                  <v-btn type="submit" :disabled="loadingState" :loading="loadingState">
                     Sign In
                     <span slot="loader" class="custom-loader">
                       <v-icon light>cached</v-icon>
@@ -58,30 +53,9 @@ export default {
       password: ''
     }
   },
-  computed: {
-    user () {
-      return this.$store.getters.user
-    },
-    error () {
-      return this.$store.getters.error
-    },
-    loading () {
-      return this.$store.getters.loading
-    }
-  },
-  watch: {
-    user (value) {
-      if (value !== null && value !== undefined) {
-        this.$router.push('/')
-      }
-    }
-  },
   methods: {
     onSignIn () {
       this.$store.dispatch('signUserIn', {email: this.email, password: this.password})
-    },
-    onDismissed () {
-      this.$store.dispatch('clearError')
     }
   }
 }
