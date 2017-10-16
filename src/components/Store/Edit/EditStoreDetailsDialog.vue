@@ -1,8 +1,5 @@
 <template>
-  <v-dialog width="350px" persistent v-model="editDialog">
-    <v-btn fab accent slot="activator">
-      <v-icon>edit</v-icon>
-    </v-btn>
+  
     <v-card>
       <v-container>
         <v-layout row wrap>
@@ -34,14 +31,14 @@
         <v-layout row wrap>
           <v-flex xs12>
             <v-card-actions>
-              <v-btn flat class="blue--text darken-1" @click="editDialog = false">Close</v-btn>
+              <v-btn flat class="blue--text darken-1" @click="close">Close</v-btn>
               <v-btn flat class="blue--text darken-1" @click="onSaveChanges">Save</v-btn>
             </v-card-actions>
           </v-flex>
         </v-layout>
       </v-container>
     </v-card>
-  </v-dialog>
+  
 </template>
 
 <script>
@@ -49,7 +46,6 @@
     props: ['store'],
     data () {
       return {
-        editDialog: false,
         editedTitle: this.store.title,
         editedDescription: this.store.description
       }
@@ -59,12 +55,15 @@
         if (this.editedTitle.trim() === '' || this.editedDescription.trim() === '') {
           return
         }
-        this.editDialog = false
         this.$store.dispatch('updateStoreData', {
           id: this.store.id,
           title: this.editedTitle,
           description: this.editedDescription
         })
+        this.$emit('close')
+      },
+      close () {
+        this.$emit('close')
       }
     }
   }

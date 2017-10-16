@@ -57,6 +57,7 @@ for code references https://github.com/academind/yt-devmeetup-vue-firebase
 * CD & CI, Codeship? travis is expensive
 * ~~Structure and code clean up~~
 * Finish up Stores - Quien puede verla (Fuera del Creador)
+  * Popup issue for show/hiding
   * Nomre, Description, Imagen, Currency, tipo Impuesto
 * Assign users to stores 
 * F: Different permission leves for users in stores
