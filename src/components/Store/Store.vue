@@ -7,11 +7,15 @@
             <h6 class="primary--text">{{ store.title }}</h6>
             <template v-if="userIsCreator">
               <v-spacer></v-spacer>
-              <v-dialog width="350px" persistent v-model="showDialog">
+              <v-dialog width="400px" persistent v-model="showDialog">
                 <v-btn fab accent slot="activator">
                   <v-icon>edit</v-icon>
                 </v-btn>
-                <app-edit-store-details-dialog :store="store" @close="showDialog = false"></app-edit-store-details-dialog>
+                <store-basic-info 
+                  :store="store"
+                  action="Edit" 
+                  @close="showDialog = false"
+                ></store-basic-info>
               </v-dialog>
             </template>
           </v-card-title>
@@ -33,8 +37,13 @@
 </template>
     
 <script>
+import StoreBasicInfo from './Edit/StoreBasicInfo'
+
 export default {
   props: ['id'],
+  components: {
+    StoreBasicInfo
+  },
   data () {
     return {
       showDialog: false
