@@ -23,6 +23,9 @@ export default {
       if (payload.description) {
         store.description = payload.description
       }
+      if (payload.imageUrl) {
+        store.imageUrl = payload.imageUrl
+      }
     }
   },
   actions: {
@@ -101,7 +104,7 @@ export default {
           }
         )
     },
-    updateStoreData ({commit}, payload) {
+    updateStoreData ({commit, dispatch}, payload) {
       commit('setLoading', true)
       const updateObj = {}
       if (payload.title) {
@@ -113,8 +116,41 @@ export default {
       firebase.database().ref('stores').child(payload.id).update(updateObj)
         .then(
           () => {
+            if (payload.image) {
+              dispatch('uploadImage', payload)
+            }
             commit('setLoading', false)
             commit('updateStore', payload)
+          }
+        )
+        .catch(
+          error => {
+            commit('setLoading', false)
+            commit('setError', error)
+          }
+        )
+    },
+    uploadImage ({commit}, payload) {
+      commit('setLoading', true)
+      const filename = payload.image.name
+      const ext = filename.slice(filename.lastIndexOf('.'))
+      let imageUrl
+      firebase.storage().ref('stores/' + payload.id + '.' + ext).put(payload.image)
+        .then(
+          fileData => {
+            imageUrl = fileData.metadata.downloadURLs[0]
+            return firebase.database().ref('stores').child(payload.id).update({
+              imageUrl: imageUrl
+            })
+          }
+        )
+        .then(
+          () => {
+            commit('setLoading', false)
+            commit('updateStore', {
+              id: payload.id,
+              imageUrl: imageUrl
+            })
           }
         )
         .catch(
