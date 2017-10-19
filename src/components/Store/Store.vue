@@ -1,35 +1,49 @@
 <template>
-  <v-container>
+  <v-container class="mt-0">
+    <v-dialog persistent v-model="loadingState">
+      <app-loading></app-loading>
+    </v-dialog>
+    <v-toolbar dark class="primary mb-4">
+      <v-btn
+        v-if="userIsCreator"
+        color="purple"
+        dark
+        small
+        absolute
+        bottom
+        right
+        fab
+        @click.native.stop="showDialog = !showDialog"
+      >
+        <v-icon>edit</v-icon>
+        <v-dialog width="400px" persistent v-model="showDialog">
+          <store-basic-info 
+            :store="store"
+            action="Edit" 
+            @close="showDialog = false"
+          ></store-basic-info>
+        </v-dialog>     
+      </v-btn>
+      <v-toolbar-title>{{ store.title }}</v-toolbar-title>
+    </v-toolbar>
     <v-layout row wrap>
       <v-flex xs12>
-        <v-card>
-          <v-card-title>
-            <h6 class="primary--text">{{ store.title }}</h6>
-            <template v-if="userIsCreator">
-              <v-spacer></v-spacer>
-              <v-dialog width="400px" persistent v-model="showDialog">
-                <v-btn fab accent slot="activator">
-                  <v-icon>edit</v-icon>
-                </v-btn>
-                <store-basic-info 
-                  :store="store"
-                  action="Edit" 
-                  @close="showDialog = false"
-                ></store-basic-info>
-              </v-dialog>
-            </template>
-          </v-card-title>
-          <v-card-media
-            :src="store.imageUrl"
-            height="400px"
-          ></v-card-media>
-          <v-card-text>
-            <div>{{ store.description }}</div>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn class="primary">Add User</v-btn>
-          </v-card-actions>
+        <v-card class="info">
+          <v-container fluid>
+            <v-layout row>
+              <v-flex xs5 sm4 md3>
+                <v-card-media
+                  :src="store.imageUrl"
+                  height="130px"
+                  ></v-card-media>
+              </v-flex>
+              <v-flex xs7 sm8 md9>
+                <v-card-title class="white--text">
+                  {{ store.description}}
+                </v-card-title>
+              </v-flex>
+            </v-layout>
+          </v-container>
         </v-card>
       </v-flex>
     </v-layout>

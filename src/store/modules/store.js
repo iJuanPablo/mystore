@@ -118,8 +118,9 @@ export default {
           () => {
             if (payload.image) {
               dispatch('uploadImage', payload)
+            } else {
+              commit('setLoading', false)
             }
-            commit('setLoading', false)
             commit('updateStore', payload)
           }
         )
