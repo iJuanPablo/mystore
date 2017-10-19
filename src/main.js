@@ -10,7 +10,7 @@ import * as firebase from 'firebase'
 import * as firebaseConfig from './utils/firebaseConfig'
 
 import AlertCmp from './components/Shared/Alert.vue'
-import EditStoreDetailsDialog from './components/Store/Edit/EditStoreDetailsDialog'
+import LoadingCmp from './components/Shared/Loading.vue'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
@@ -24,7 +24,7 @@ Vue.mixin({
 })
 
 Vue.component('app-alert', AlertCmp)
-Vue.component('app-edit-store-details-dialog', EditStoreDetailsDialog)
+Vue.component('app-loading', LoadingCmp)
 
 /* eslint-disable no-new */
 new Vue({

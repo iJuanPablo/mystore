@@ -55,9 +55,17 @@ for code references https://github.com/academind/yt-devmeetup-vue-firebase
 
 ## TODO
 * CD & CI, Codeship? travis is expensive
-* Structure and code clean up
+* ~~Structure and code clean up~~
 * Finish up Stores - Quien puede verla (Fuera del Creador)
-  * Nomre, Description, Imagen, Currency, tipo Impuesto
+  * ~~Popup issue for show/hiding~~
+  * ~~Nomre, Description, Imagen,~~ 
+  * ~~BUG: Create store imagen no aparce altiro~~
+  * ~~BUG: Stores menu lowers~~
+  * ~~modal para crear store~~
+  * ~~Refactorizar codigo crear store~~
+  * Currency, tipo Impuesto
+* ~~Loading feature globally~~
+* ~~store to follow UI as stores! (Sub menu w/icons)~~
 * Assign users to stores 
 * F: Different permission leves for users in stores
 * Products: Default to creation store, but can be shared
@@ -85,6 +93,9 @@ for code references https://github.com/academind/yt-devmeetup-vue-firebase
   * Currency
   * Idioma
 * Testing!
+* Security
+  * Review Bucket permissions (who can see what?)
+
 
 ## TODO Future
 * Logout console error.

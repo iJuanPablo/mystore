@@ -12,11 +12,9 @@ import Profile from '@/components/User/Profile'
 import Dashboard from '@/components/Dashboard/Dashboard'
 
 import Stores from '@/components/Store/Stores'
-import CreateStore from '@/components/Store/CreateStore'
 import Store from '@/components/Store/Store'
 
 import Products from '@/components/Product/Products'
-import CreateProduct from '@/components/Product/CreateProduct'
 
 Vue.use(Router)
 
@@ -56,12 +54,6 @@ export default new Router({
       beforeEnter: AuthGuard
     },
     {
-      path: '/store/new',
-      name: 'CreateStore',
-      component: CreateStore,
-      beforeEnter: AuthGuard
-    },
-    {
       path: '/store/:id',
       name: 'Store',
       component: Store,
@@ -72,12 +64,6 @@ export default new Router({
       path: '/products',
       name: 'Products',
       component: Products,
-      beforeEnter: AuthGuard
-    },
-    {
-      path: '/product/new',
-      name: 'CreateProduct',
-      component: CreateProduct,
       beforeEnter: AuthGuard
     }
   ],
