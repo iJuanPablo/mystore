@@ -53,24 +53,34 @@ for images? http://cthedot.de/icongen/
 
 for code references https://github.com/academind/yt-devmeetup-vue-firebase
 
+functions folder structure
+https://codeburst.io/organizing-your-firebase-cloud-functions-67dc17b3b0da
+
 ## TODO
-* CD & CI, Codeship? travis is expensive
-* ~~Structure and code clean up~~
-* Finish up Stores - Quien puede verla (Fuera del Creador)
+* General
+  * ~~Structure and code clean up~~
+  * ~~Loading feature globally~~
+  * Fix ui for loading global feature (modal)
+* Users
+  * Email Verification
+  * Create users node
+* Stores
   * ~~Popup issue for show/hiding~~
   * ~~Nomre, Description, Imagen,~~ 
   * ~~BUG: Create store imagen no aparce altiro~~
   * ~~BUG: Stores menu lowers~~
   * ~~modal para crear store~~
   * ~~Refactorizar codigo crear store~~
+  * ~~store to follow UI as stores! (Sub menu w/icons)~~
   * Currency, tipo Impuesto
-* ~~Loading feature globally~~
-* ~~store to follow UI as stores! (Sub menu w/icons)~~
-* Assign users to stores 
-* F: Different permission leves for users in stores
-* Products: Default to creation store, but can be shared
+  * Quien puede verla (Fuera del Creador)
+  * Assign users to stores 
+  * F: Different permission leves for users in stores
+  * Create "creators" array/user func
+* Products: 
+  * Default to creation store
   * Nombre, Imagen, Descripción, Categoria, Variaciones, Inventario
-* F: Share products to a diff store
+  * F: Share products to a diff store
 * Prices: Costo, Min, Destribuidor, Detalle
   * Todo sin Iva
 * Vendedores
@@ -87,7 +97,7 @@ for code references https://github.com/academind/yt-devmeetup-vue-firebase
   * Roles
 * Database
   * Seguridad y Rules
-* Function
+* Functions
   * Integridad
 * Internacionalizacion
   * Currency
@@ -95,7 +105,11 @@ for code references https://github.com/academind/yt-devmeetup-vue-firebase
 * Testing!
 * Security
   * Review Bucket permissions (who can see what?)
-
+* Offline
+  * https://codelabs.developers.google.com/codelabs/offline/#5
+  * Evaluate https://github.com/championswimmer/vuex-persist
+* DevOps
+  * CD & CI, Codeship? travis is expensive
 
 ## TODO Future
 * Logout console error.
