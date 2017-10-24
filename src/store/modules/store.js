@@ -26,6 +26,19 @@ export default {
       if (payload.imageUrl) {
         store.imageUrl = payload.imageUrl
       }
+    },
+    addUserToStore (state, payload) {
+      const store = state.stores.find(
+        store => {
+          return store.id === payload.store_id
+        }
+      )
+      const id = payload.user_id
+      if (store.users.findIndex(user => user.id === id) >= 0) {
+        return
+      }
+      store.users.push(payload.user_id)
+      store.users_fbkey[payload.user_id] = payload.fbkey
     }
   },
   actions: {
@@ -75,8 +88,8 @@ export default {
         .then(
           key => {
             const filename = payload.image.name
-            const ext = filename.slice(filename.lastIndexOf('.'))
-            return firebase.storage().ref('stores/' + key + '.' + ext).put(payload.image)
+            const ext = filename.slice(filename.lastIndexOf('.') + 1)
+            return firebase.storage().ref('stores/' + key + '/' + key + '.' + ext).put(payload.image)
           }
         )
         .then(
@@ -134,9 +147,9 @@ export default {
     uploadImage ({commit}, payload) {
       commit('setLoading', true)
       const filename = payload.image.name
-      const ext = filename.slice(filename.lastIndexOf('.'))
+      const ext = filename.slice(filename.lastIndexOf('.') + 1)
       let imageUrl
-      firebase.storage().ref('stores/' + payload.id + '.' + ext).put(payload.image)
+      firebase.storage().ref('stores/' + payload.id + '/' + payload.id + '.' + ext).put(payload.image)
         .then(
           fileData => {
             imageUrl = fileData.metadata.downloadURLs[0]
@@ -152,6 +165,25 @@ export default {
               id: payload.id,
               imageUrl: imageUrl
             })
+          }
+        )
+        .catch(
+          error => {
+            commit('setLoading', false)
+            commit('setError', error)
+          }
+        )
+    },
+    addUserToStore ({commit}, payload) {
+      commit('setLoading', true)
+      firebase.database().ref('/users/' + payload.user_id).child('/stores/')
+        .push(payload.store_id)
+        .then(
+          data => {
+            commit('setLoading', false)
+            commit('addUserToStore', {user_id: payload.user_id,
+              store_id: payload.store_id,
+              fbkey: data.key})
           }
         )
         .catch(
