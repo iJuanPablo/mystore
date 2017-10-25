@@ -62,8 +62,8 @@ https://codeburst.io/organizing-your-firebase-cloud-functions-67dc17b3b0da
   * ~~Loading feature globally~~
   * Fix ui for loading global feature (modal)
 * Users
+  * ~~Create users node (Cloud Function)~~
   * Email Verification
-  * Create users node
 * Stores
   * ~~Popup issue for show/hiding~~
   * ~~Nomre, Description, Imagen,~~ 
@@ -72,6 +72,8 @@ https://codeburst.io/organizing-your-firebase-cloud-functions-67dc17b3b0da
   * ~~modal para crear store~~
   * ~~Refactorizar codigo crear store~~
   * ~~store to follow UI as stores! (Sub menu w/icons)~~
+  * ~~Thumbnails for pictures~~
+  * ~~Improve loading on images~~
   * Currency, tipo Impuesto
   * Quien puede verla (Fuera del Creador)
   * Assign users to stores 
