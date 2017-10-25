@@ -133,11 +133,11 @@ export default {
       firebase.database().ref('stores').child(payload.id).update(updateObj)
         .then(
           () => {
+            commit('setLoading', false)
+            commit('updateStore', payload)
             if (payload.image) {
               dispatch('uploadImage', payload)
             }
-            commit('setLoading', false)
-            commit('updateStore', payload)
           }
         )
         .catch(
@@ -152,11 +152,9 @@ export default {
       const filename = payload.image.name
       const ext = filename.slice(filename.lastIndexOf('.') + 1)
       let imageUrl
-      console.log('uploading image')
       firebase.storage().ref('stores/' + payload.id + '/' + payload.id + '.' + ext).put(payload.image)
         .then(
           fileData => {
-            console.log('updating stores')
             imageUrl = fileData.metadata.downloadURLs[0]
             return firebase.database().ref('stores').child(payload.id).update({
               imageUrl: imageUrl
@@ -175,7 +173,6 @@ export default {
         )
         .catch(
           error => {
-            console.log('error')
             commit('setLoading', false)
             commit('setError', error)
           }
@@ -185,10 +182,8 @@ export default {
       var ref = firebase.database().ref('stores').child(payload.id)
 
       var onValueChange = function (data) {
-        console.log('getting data')
-        const store = data.val()
-        const newThumbUrl = store.thumbUrl
-        console.log(newThumbUrl)
+        const updatedStore = data.val()
+        const newThumbUrl = updatedStore.thumbUrl
         if (newThumbUrl !== '') {
           commit('setLoadingImage', false)
           commit('updateStore', {
