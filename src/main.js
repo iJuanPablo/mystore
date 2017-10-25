@@ -11,6 +11,7 @@ import * as firebaseConfig from './utils/firebaseConfig'
 
 import AlertCmp from './components/Shared/Alert.vue'
 import LoadingCmp from './components/Shared/Loading.vue'
+import LoadingImgCmp from './components/Shared/LoadingImage.vue'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
@@ -25,6 +26,7 @@ Vue.mixin({
 
 Vue.component('app-alert', AlertCmp)
 Vue.component('app-loading', LoadingCmp)
+Vue.component('app-loading-img', LoadingImgCmp)
 
 /* eslint-disable no-new */
 new Vue({
