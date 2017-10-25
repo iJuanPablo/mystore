@@ -32,10 +32,14 @@
           <v-container fluid>
             <v-layout row>
               <v-flex xs5 sm4 md3>
-                <v-card-media
-                  :src="store.imageUrl"
+                <v-card-media v-if="loadingImageState">
+                  <app-loading-img></app-loading-img>
+                </v-card-media>
+                <v-card-media v-else
+                  :src="store.thumbUrl"
                   height="130px"
                   ></v-card-media>
+                
               </v-flex>
               <v-flex xs7 sm8 md9>
                 <v-card-title class="white--text">
