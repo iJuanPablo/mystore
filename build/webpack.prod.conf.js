@@ -11,6 +11,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 var loadMinified = require('./load-minified')
+var glob = require('glob')
 
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -106,7 +107,12 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
-      stripPrefix: 'dist/'
+      stripPrefix: 'dist/',
+      dynamicUrlToDependencies: {
+        '/top': [
+          ...glob.sync('./dist/*.js')
+        ]
+      }
     })
   ]
 })

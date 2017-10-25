@@ -24,7 +24,7 @@
     </v-toolbar>
     <v-layout row wrap v-for="store in computedStores" :key="store.id" class="mb-2">
       <v-flex xs12>
-        <v-card class="info">
+        <v-card class="indigo lighten-1 white--text" :to="'/store/' + store.id">
           <v-container fluid>
             <v-layout row>
               <v-flex xs5 sm4 md3>
@@ -39,16 +39,10 @@
               <v-flex xs7 sm8 md9>
                 <v-card-title primary-title>
                   <div>
-                    <h5 class="white--text mb-0">{{ store.title }}</h5>
+                    <h5 class="mb-0">{{ store.title }}</h5>
                     <div>{{ store.description }}</div>
                   </div>
                 </v-card-title>
-                <v-card-actions>
-                  <v-btn flat :to="'/store/' + store.id">
-                    <v-icon left light>arrow_forward</v-icon>
-                    View Store
-                  </v-btn>
-                </v-card-actions>
               </v-flex>
             </v-layout>
           </v-container>
