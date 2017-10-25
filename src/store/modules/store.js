@@ -26,6 +26,9 @@ export default {
       if (payload.imageUrl) {
         store.imageUrl = payload.imageUrl
       }
+      if (payload.thumbUrl) {
+        store.thumbUrl = payload.thumbUrl
+      }
     },
     addUserToStore (state, payload) {
       const store = state.stores.find(
@@ -70,45 +73,30 @@ export default {
           }
         )
     },
-    createStore ({commit, getters}, payload) {
+    createStore ({commit, getters, dispatch}, payload) {
       commit('setLoading', true)
       const store = {
         title: payload.title,
         description: payload.description,
-        creatorId: getters.user.id
+        creatorId: getters.user.id,
+        thumbUrl: '',
+        imageUrl: ''
       }
-      let imageUrl
-      let key
       firebase.database().ref('stores').push(store)
         .then(
           data => {
-            key = data.key
-            return key
-          }
-        )
-        .then(
-          key => {
-            const filename = payload.image.name
-            const ext = filename.slice(filename.lastIndexOf('.') + 1)
-            return firebase.storage().ref('stores/' + key + '/' + key + '.' + ext).put(payload.image)
-          }
-        )
-        .then(
-          fileData => {
-            imageUrl = fileData.metadata.downloadURLs[0]
-            return firebase.database().ref('stores').child(key).update({
-              imageUrl: imageUrl
-            })
-          }
-        )
-        .then(
-          () => {
+            const key = data.key
             commit('setLoading', false)
             commit('createStore', {
               ...store,
-              imageUrl: imageUrl,
               id: key
             })
+            if (payload.image) {
+              dispatch('uploadImage', {
+                id: key,
+                image: payload.image
+              })
+            }
           }
         )
         .catch(

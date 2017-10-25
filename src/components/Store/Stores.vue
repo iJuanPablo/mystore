@@ -22,14 +22,17 @@
       </v-btn>
       <v-toolbar-title>Stores</v-toolbar-title>
     </v-toolbar>
-    <v-layout row wrap v-for="store in stores" :key="store.id" class="mb-2">
+    <v-layout row wrap v-for="store in computedStores" :key="store.id" class="mb-2">
       <v-flex xs12>
         <v-card class="info">
           <v-container fluid>
             <v-layout row>
               <v-flex xs5 sm4 md3>
+                <v-card-media v-if="loadingImageState && store.thumbUrl==''">
+                  <app-loading-img></app-loading-img>
+                </v-card-media>
                 <v-card-media
-                  :src="store.imageUrl"
+                  :src="store.thumbUrl"
                   height="130px"
                   ></v-card-media>
               </v-flex>
@@ -76,6 +79,11 @@ export default {
     return {
       showDialog: false,
       store: null
+    }
+  },
+  computed: {
+    computedStores () {
+      return this.stores
     }
   }
 }
