@@ -27,28 +27,29 @@
       <v-toolbar-title>{{ store.title }}</v-toolbar-title>
     </v-toolbar>
     <v-layout row wrap>
-      <v-flex xs12>
-        <v-card class="indigo lighten-1 white--text">
-          <v-container fluid>
-            <v-layout row>
-              <v-flex xs5 sm4 md3>
-                <v-card-media v-if="loadingImageState">
-                  <app-loading-img></app-loading-img>
-                </v-card-media>
-                <v-card-media v-else
-                  :src="store.thumbUrl"
-                  height="130px"
-                  ></v-card-media>
-                
-              </v-flex>
-              <v-flex xs7 sm8 md9>
-                <v-card-title class="white--text">
-                  {{ store.description}}
-                </v-card-title>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card>
+      <v-flex xs12 >
+          <v-card >
+            <v-container fluid class="elevation-5 pa-0">
+              <v-layout row >
+                <v-flex xs5 sm4 md3>
+                  <v-card-media v-if="loadingImageState">
+                    <app-loading-img></app-loading-img>
+                  </v-card-media>
+                  <v-card-media v-else
+                    :src="store.thumbUrl"
+                    height="100px"
+                    ></v-card-media>
+                  
+                </v-flex>
+                <v-flex xs7 sm8 md9>
+                  <v-card-title>
+                    {{ store.description}}
+                  </v-card-title>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card>
+       
       </v-flex>
     </v-layout>
   </v-container>

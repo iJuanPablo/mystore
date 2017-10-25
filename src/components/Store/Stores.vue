@@ -24,8 +24,8 @@
     </v-toolbar>
     <v-layout row wrap v-for="store in computedStores" :key="store.id" class="mb-2">
       <v-flex xs12>
-        <v-card class="indigo lighten-1 white--text" :to="'/store/' + store.id">
-          <v-container fluid>
+        <v-card :to="'/store/' + store.id">
+          <v-container fluid class="pa-0 elevation-5">
             <v-layout row>
               <v-flex xs5 sm4 md3>
                 <v-card-media v-if="loadingImageState && store.thumbUrl==''">
