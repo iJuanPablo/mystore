@@ -86,7 +86,7 @@
     watch: {
       user (value) {
         if (value !== null && value !== undefined) {
-          this.$router.push('/dashboard')
+          this.$router.push('/stores')
           this.$store.dispatch('loadStores')
         } else {
           this.$router.push('/')
